@@ -1,12 +1,66 @@
 import Head from 'next/head'
-import { Button } from '@chakra-ui/react'
 import ApercuPro from 'next/font/local'
 
-import { Layout } from '@/components/Layout'
+import { Heading, Box } from '@chakra-ui/react'
+
+import { Header, HabitCard, Layout } from '@/components'
+import { DayProgressType, HabitType } from '@/components/HabitCard'
 
 const apercuPro = ApercuPro({
   src: './fonts/apercu_pro.otf'
 })
+
+const weekProgress: DayProgressType[] = [
+  { id: 'monday', dayOfTheWeek: 'Monday', completed: false, disabled: false },
+  { id: 'tuesday', dayOfTheWeek: 'Tuesday', completed: true, disabled: false },
+  {
+    id: 'wednesday',
+    dayOfTheWeek: 'Wednesday',
+    completed: true,
+    disabled: false
+  },
+  {
+    id: 'thursday',
+    dayOfTheWeek: 'Thursday',
+    completed: true,
+    disabled: false
+  },
+  { id: 'friday', dayOfTheWeek: 'Friday', completed: true, disabled: true },
+  {
+    id: 'saturday',
+    dayOfTheWeek: 'Saturday',
+    completed: true,
+    disabled: false
+  },
+  { id: 'sunday', dayOfTheWeek: 'Sunday', completed: true, disabled: false }
+]
+
+const habits: HabitType[] = [
+  {
+    id: 'habit-excersice',
+    title: 'Excersise',
+    description: '30 minutes per day',
+    currentDay: 13,
+    totalOfDays: 21,
+    weekProgress
+  },
+  {
+    id: 'habit-drink-water',
+    title: 'Drink water',
+    description: '2L per day',
+    currentDay: 13,
+    totalOfDays: 21,
+    weekProgress
+  },
+  {
+    id: 'habit-meditate',
+    title: 'Meditate',
+    description: '10 minutes per day',
+    currentDay: 13,
+    totalOfDays: 21,
+    weekProgress
+  }
+]
 
 export default function HomePage() {
   return (
@@ -18,7 +72,31 @@ export default function HomePage() {
       </Head>
       <main className={apercuPro.className}>
         <Layout>
-          <Button colorScheme="blue">Button</Button>
+          <Header>
+            <Heading fontSize="24px">Today</Heading>
+            <Heading
+              ml="12px"
+              fontSize="24px"
+              color="var(--chakra-colors-lightGray)"
+            >
+              Monday, February 27th
+            </Heading>
+          </Header>
+          <Box p="40px">
+            <Heading fontSize="24px" pb="20px">
+              Your habits
+            </Heading>
+            <Box
+              pt="20px"
+              display="grid"
+              gridTemplateColumns="repeat(3, 200px)"
+              gap="12px"
+            >
+              {habits.map(habit => (
+                <HabitCard key={habit.id} habit={habit} />
+              ))}
+            </Box>
+          </Box>
         </Layout>
       </main>
     </>

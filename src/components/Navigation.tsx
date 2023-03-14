@@ -12,7 +12,7 @@ export const Navigation = (props: NavigationProps) => {
   return (
     <Box {...props}>
       {routes.map(({ route, key, name }) => (
-        <Link fontSize="caption" href={route} key={key}>
+        <Link fontSize="caption" fontWeight="bold" href={route} key={key}>
           {name}
         </Link>
       ))}

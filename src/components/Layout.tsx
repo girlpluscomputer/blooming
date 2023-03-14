@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react'
 import Image from 'next/image'
 import { Flex, Box } from '@chakra-ui/react'
 
-import { Navigation } from '../components/Navigation'
+import { Navigation } from '../components'
 import BloomingLogo from '../../public/blooming-logo.svg'
 
 const routes = [
@@ -30,7 +30,7 @@ export const Layout = ({ children }: PropsWithChildren) => (
         routes={routes}
       />
     </Box>
-    <Box bg="background" w="calc(100% - 300px)" p="40px">
+    <Box bg="background" w="calc(100% - 300px)">
       {children}
     </Box>
   </Flex>

@@ -1,12 +1,17 @@
 import { extendTheme } from '@chakra-ui/react'
 
 export const theme = extendTheme({
+  fonts: {
+    heading: `'Apercu Pro', sans-serif`,
+    body: `'Apercu Pro', sans-serif`
+  },
   textStyles: {
     h2: {
       fontSize: '24px'
     },
     caption: {
-      fontSize: '16px'
+      fontSize: '16px',
+      fontWeight: 'bold'
     }
   },
   colors: {
@@ -15,6 +20,8 @@ export const theme = extendTheme({
     green: '#B1D5AF',
     white: '#ffffff',
     gray: '#808192',
+    lightGray: '#AAAAAA',
+    grayBorder: 'rgba(128, 129, 146, 0.1)',
     background: '#EFEFEF'
   }
 })
