@@ -1,13 +1,11 @@
 import Head from 'next/head'
 import ApercuPro from 'next/font/local'
 
-import { Habits } from '@/views'
-
 const apercuPro = ApercuPro({
   src: './fonts/apercu_pro.otf'
 })
 
-export default function HomePage() {
+export default function ProgressPage() {
   return (
     <>
       <Head>
@@ -16,7 +14,7 @@ export default function HomePage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main className={apercuPro.className}>
-        <Habits />
+        <h2>progress</h2>
       </main>
     </>
   )

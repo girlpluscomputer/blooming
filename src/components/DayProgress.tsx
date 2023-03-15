@@ -39,7 +39,7 @@ export const DayProgress = ({
       w="20px"
       height="20px"
     >
-      <Text fontSize="9px" fontWeight="bold" color="black">
+      <Text fontSize="9px" fontWeight="bold" color="white">
         {dayOfTheWeek.charAt(0)}
       </Text>
     </Box>

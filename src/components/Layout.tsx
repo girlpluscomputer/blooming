@@ -1,14 +1,13 @@
 import { PropsWithChildren } from 'react'
-import Image from 'next/image'
 import { Flex, Box } from '@chakra-ui/react'
 
 import { Navigation } from '../components'
 import BloomingLogo from '../../public/blooming-logo.svg'
 
 const routes = [
-  { key: 'home-route', name: 'habits', route: '/' },
-  { key: 'challenge-route', name: 'challenges', route: '/challenges' },
-  { key: 'progress-route', name: 'progress', route: '/progress' }
+  { key: 'home-route', name: 'habits', link: '/' },
+  { key: 'challenge-route', name: 'challenges', link: '/challenges' },
+  { key: 'progress-route', name: 'progress', link: '/progress' }
 ]
 
 export const Layout = ({ children }: PropsWithChildren) => (
@@ -21,7 +20,7 @@ export const Layout = ({ children }: PropsWithChildren) => (
       display="flex"
       flexDirection="column"
     >
-      <Image src={BloomingLogo} alt="blooming logo" width={30} height={30} />
+      <BloomingLogo />
       <Navigation
         display="flex"
         flexDirection="column"

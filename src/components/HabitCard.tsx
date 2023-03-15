@@ -22,6 +22,7 @@ export interface HabitType {
   title: string
   description: string
   weekProgress: DayProgressType[]
+  completed: boolean
 }
 
 export interface HabitCardProps {
@@ -29,10 +30,30 @@ export interface HabitCardProps {
 }
 
 export const HabitCard = ({ habit }: HabitCardProps) => {
-  const { currentDay, totalOfDays, title, description, weekProgress } = habit
+  const {
+    currentDay,
+    totalOfDays,
+    title,
+    description,
+    weekProgress,
+    completed
+  } = habit
 
   return (
-    <Card maxWidth="200px" height="180px" p="16px">
+    <Card
+      maxWidth="200px"
+      height="180px"
+      p="16px"
+      bg={
+        completed
+          ? 'radial-gradient(50% 50% at 50% 50%, #B1D5AF 0%, rgba(177, 213, 175, 0.42) 89.06%)'
+          : '#fff'
+      }
+      _hover={{
+        border: '3px solid rgba(177, 213, 175, 1)',
+        cursor: 'pointer'
+      }}
+    >
       <CardBody
         p="0"
         display="flex"
@@ -53,7 +74,7 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
         </Box>
         <Box display="flex" justifyContent="space-between">
           {weekProgress?.map(dayProgress => (
-            <DayProgress key="id" {...dayProgress} />
+            <DayProgress key={dayProgress.id} {...dayProgress} />
           ))}
         </Box>
       </CardBody>

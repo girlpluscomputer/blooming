@@ -1,6 +1,6 @@
 import { Box, Link, BoxProps } from '@chakra-ui/react'
 
-export type RouteType = { key: string; name: string; route: string }
+export type RouteType = { key: string; name: string; link: string }
 
 export interface NavigationProps extends BoxProps {
   routes: RouteType[]
@@ -11,8 +11,8 @@ export const Navigation = (props: NavigationProps) => {
 
   return (
     <Box {...props}>
-      {routes.map(({ route, key, name }) => (
-        <Link fontSize="caption" fontWeight="bold" href={route} key={key}>
+      {routes.map(({ link, key, name }) => (
+        <Link fontSize="caption" fontWeight="bold" href={link} key={key}>
           {name}
         </Link>
       ))}
