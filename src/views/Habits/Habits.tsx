@@ -17,8 +17,8 @@ const Habits = () => {
     const updatedHabits = habits.map((habit: HabitType) => {
       if (habit.id === habitId) {
         return habit.completed
-          ? { ...habit, completed: false }
-          : { ...habit, completed: true }
+          ? { ...habit, completed: false, currentDay: habit.currentDay - 1 }
+          : { ...habit, completed: true, currentDay: habit.currentDay + 1 }
       }
 
       return habit
