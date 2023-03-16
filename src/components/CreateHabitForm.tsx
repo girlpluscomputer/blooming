@@ -1,7 +1,7 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { Box, Button, Input, Select, Text } from '@chakra-ui/react'
 
-import { WEEK_PROGRESS } from '@/views/Habits/Habits'
+import { WEEK_PROGRESS } from '@/utils/constants'
 import { HabitType } from './HabitCard'
 
 export const CreateHabitForm = ({
@@ -16,6 +16,12 @@ export const CreateHabitForm = ({
   const [category, setCategory] = useState<string>('')
   const [totalOfDays, setTotalOfDays] = useState<number>(21)
   const [repeat, setRepeat] = useState<string>('')
+  const isSubmitButtonDisabled =
+    !Boolean(title) ||
+    !Boolean(description) ||
+    !Boolean(category) ||
+    !Boolean(totalOfDays) ||
+    !Boolean(repeat)
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -128,6 +134,7 @@ export const CreateHabitForm = ({
             variant="solid"
             color="#fff"
             bg="var(--chakra-colors-primary)"
+            isDisabled={isSubmitButtonDisabled}
           >
             Create
           </Button>

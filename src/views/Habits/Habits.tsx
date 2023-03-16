@@ -2,33 +2,8 @@ import { useState } from 'react'
 import { Box, Button, Heading, useDisclosure } from '@chakra-ui/react'
 
 import { CreateHabitModal, HabitCard, Header } from '@/components'
-import { DayProgressType, HabitType } from '@/components/HabitCard'
+import { HabitType } from '@/components/HabitCard'
 import AddIcon from '../../../public/add.svg'
-
-export const WEEK_PROGRESS: DayProgressType[] = [
-  { id: 'monday', dayOfTheWeek: 'Monday', completed: false, disabled: false },
-  { id: 'tuesday', dayOfTheWeek: 'Tuesday', completed: true, disabled: false },
-  {
-    id: 'wednesday',
-    dayOfTheWeek: 'Wednesday',
-    completed: true,
-    disabled: false
-  },
-  {
-    id: 'thursday',
-    dayOfTheWeek: 'Thursday',
-    completed: true,
-    disabled: false
-  },
-  { id: 'friday', dayOfTheWeek: 'Friday', completed: true, disabled: true },
-  {
-    id: 'saturday',
-    dayOfTheWeek: 'Saturday',
-    completed: true,
-    disabled: false
-  },
-  { id: 'sunday', dayOfTheWeek: 'Sunday', completed: true, disabled: false }
-]
 
 const Habits = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
