@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Box, Button, Heading, useDisclosure } from '@chakra-ui/react'
 
 import { CreateHabitModal, HabitCard, Header } from '@/components'
-import { HabitType } from '@/components/HabitCard'
+import { HabitType } from './types'
 import AddIcon from '../../../public/add.svg'
 
 const Habits = () => {

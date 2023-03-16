@@ -9,8 +9,8 @@ import {
   Box
 } from '@chakra-ui/react'
 
+import { HabitType } from '@/views/Habits/types'
 import { CreateHabitForm } from './CreateHabitForm'
-import { HabitType } from './HabitCard'
 
 export const CreateHabitModal = ({
   isOpen,

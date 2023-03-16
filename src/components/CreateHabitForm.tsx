@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react'
 import { Box, Button, Input, Select, Text } from '@chakra-ui/react'
 
 import { WEEK_PROGRESS } from '@/utils/constants'
-import { HabitType } from './HabitCard'
+import { HabitType } from '@/views/Habits/types'
 
 export const CreateHabitForm = ({
   createNewHabit,

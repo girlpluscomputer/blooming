@@ -1,5 +1,5 @@
 import { Box, Text } from '@chakra-ui/react'
-import { DayProgressType } from './HabitCard'
+import { DayProgressType } from '@/views/Habits/types'
 
 export const DayProgress = ({
   disabled,

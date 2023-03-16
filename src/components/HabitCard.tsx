@@ -7,27 +7,7 @@ import {
   Heading
 } from '@chakra-ui/react'
 import { DayProgress } from './DayProgress'
-
-export interface DayProgressType {
-  id: string
-  dayOfTheWeek: string
-  disabled?: boolean
-  completed: boolean
-}
-
-export interface HabitType {
-  id: string
-  totalOfDays: number
-  currentDay: number
-  title: string
-  description: string
-  category: string
-  weekProgress: DayProgressType[]
-  repeat: string
-  completed: boolean
-  createdAt: string
-}
-
+import { HabitType } from '@/views/Habits/types'
 export interface HabitCardProps {
   habit: HabitType
   completeHabit: (habitId: string) => void
