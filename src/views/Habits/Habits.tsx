@@ -13,6 +13,20 @@ const Habits = () => {
     setHabits(prevHabits => [...prevHabits, newHabit])
   }
 
+  const completeHabit = (habitId: string) => {
+    const updatedHabits = habits.map((habit: HabitType) => {
+      if (habit.id === habitId) {
+        return habit.completed
+          ? { ...habit, completed: false }
+          : { ...habit, completed: true }
+      }
+
+      return habit
+    })
+
+    setHabits(updatedHabits)
+  }
+
   return (
     <>
       <Header>
@@ -52,7 +66,11 @@ const Habits = () => {
             gap="12px"
           >
             {habits.map(habit => (
-              <HabitCard key={habit.id} habit={habit} />
+              <HabitCard
+                key={habit.id}
+                habit={habit}
+                completeHabit={completeHabit}
+              />
             ))}
           </Box>
         ) : (

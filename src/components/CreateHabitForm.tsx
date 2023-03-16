@@ -35,8 +35,11 @@ export const CreateHabitForm = ({
       category,
       weekProgress: WEEK_PROGRESS,
       repeat,
-      completed: false
+      completed: false,
+      createdAt: new Date().toString()
     }
+
+    console.log({ newHabit })
 
     createNewHabit(newHabit)
     onClose()

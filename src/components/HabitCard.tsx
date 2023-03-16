@@ -25,13 +25,15 @@ export interface HabitType {
   weekProgress: DayProgressType[]
   repeat: string
   completed: boolean
+  createdAt: string
 }
 
 export interface HabitCardProps {
   habit: HabitType
+  completeHabit: (habitId: string) => void
 }
 
-export const HabitCard = ({ habit }: HabitCardProps) => {
+export const HabitCard = ({ habit, completeHabit }: HabitCardProps) => {
   const {
     currentDay,
     totalOfDays,
@@ -55,6 +57,7 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
         border: '3px solid rgba(177, 213, 175, 1)',
         cursor: 'pointer'
       }}
+      onClick={() => completeHabit(habit.id)}
     >
       <CardBody
         p="0"
