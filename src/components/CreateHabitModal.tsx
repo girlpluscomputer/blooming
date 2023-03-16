@@ -5,7 +5,8 @@ import {
   ModalHeader,
   ModalCloseButton,
   ModalProps,
-  ModalBody
+  ModalBody,
+  Box
 } from '@chakra-ui/react'
 
 import { CreateHabitForm } from './CreateHabitForm'
@@ -21,10 +22,23 @@ export const CreateHabitModal = ({
   return (
     <Modal size="xl" isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent w="650px">
-        <ModalHeader>Create a new habit</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody display="flex" flexDirection="column" gap="40px">
+      <ModalContent w="650px" p="20px 40px">
+        <Box
+          w="100%"
+          display="flex"
+          alignContent="center"
+          justifyContent="space-between"
+          position="relative"
+        >
+          <ModalHeader p="20px 0" whiteSpace="nowrap">
+            Create a new habit
+          </ModalHeader>
+          <ModalCloseButton
+            position="relative"
+            color="var(--chakra-colors-gray)"
+          />
+        </Box>
+        <ModalBody p="0">
           <CreateHabitForm createNewHabit={createNewHabit} onClose={onClose} />
         </ModalBody>
       </ModalContent>
