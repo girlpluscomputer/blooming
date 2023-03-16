@@ -66,8 +66,8 @@ export const CreateHabitForm = ({
           _focus={{
             borderBottom: '1px solid var(--chakra-colors-blue)'
           }}
-          value={title}
-          onChange={event => setTitle(event.target.value)}
+          value={description}
+          onChange={event => setDescription(event.target.value)}
         />
         <Box w="100%" display="flex" justifyContent="space-between">
           <Box w="50%">
