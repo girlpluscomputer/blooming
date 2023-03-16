@@ -39,8 +39,6 @@ export const CreateHabitForm = ({
       createdAt: new Date().toString()
     }
 
-    console.log({ newHabit })
-
     createNewHabit(newHabit)
     onClose()
   }
