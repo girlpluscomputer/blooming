@@ -1,10 +1,11 @@
+import { useState } from 'react'
 import { Box, Button, Heading, useDisclosure } from '@chakra-ui/react'
 
 import { CreateHabitModal, HabitCard, Header } from '@/components'
 import { DayProgressType, HabitType } from '@/components/HabitCard'
 import AddIcon from '../../../public/add.svg'
 
-const weekProgress: DayProgressType[] = [
+export const WEEK_PROGRESS: DayProgressType[] = [
   { id: 'monday', dayOfTheWeek: 'Monday', completed: false, disabled: false },
   { id: 'tuesday', dayOfTheWeek: 'Tuesday', completed: true, disabled: false },
   {
@@ -29,38 +30,13 @@ const weekProgress: DayProgressType[] = [
   { id: 'sunday', dayOfTheWeek: 'Sunday', completed: true, disabled: false }
 ]
 
-const habits: HabitType[] = [
-  {
-    id: 'habit-excersice',
-    title: 'Excersise',
-    description: '30 minutes per day',
-    currentDay: 13,
-    totalOfDays: 21,
-    weekProgress,
-    completed: true
-  },
-  {
-    id: 'habit-drink-water',
-    title: 'Drink water',
-    description: '2L per day',
-    currentDay: 13,
-    totalOfDays: 21,
-    weekProgress,
-    completed: false
-  },
-  {
-    id: 'habit-meditate',
-    title: 'Meditate',
-    description: '10 minutes per day',
-    currentDay: 13,
-    totalOfDays: 21,
-    weekProgress,
-    completed: false
-  }
-]
-
 const Habits = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const [habits, setHabits] = useState<HabitType[]>([])
+
+  const createNewHabit = (newHabit: HabitType) => {
+    setHabits(prevHabits => [...prevHabits, newHabit])
+  }
 
   return (
     <>
@@ -93,18 +69,27 @@ const Habits = () => {
             <AddIcon />
           </Button>
         </Box>
-        <Box
-          pt="20px"
-          display="grid"
-          gridTemplateColumns="repeat(3, 200px)"
-          gap="12px"
-        >
-          {habits.map(habit => (
-            <HabitCard key={habit.id} habit={habit} />
-          ))}
-        </Box>
+        {habits.length > 0 ? (
+          <Box
+            pt="20px"
+            display="grid"
+            gridTemplateColumns="repeat(3, 200px)"
+            gap="12px"
+          >
+            {habits.map(habit => (
+              <HabitCard key={habit.id} habit={habit} />
+            ))}
+          </Box>
+        ) : (
+          // TODO: replace with new copy
+          <span>Start by creating a habit</span>
+        )}
       </Box>
-      <CreateHabitModal isOpen={isOpen} onClose={onClose} />
+      <CreateHabitModal
+        isOpen={isOpen}
+        onClose={onClose}
+        createNewHabit={createNewHabit}
+      />
     </>
   )
 }

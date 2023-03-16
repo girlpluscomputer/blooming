@@ -21,7 +21,9 @@ export interface HabitType {
   currentDay: number
   title: string
   description: string
+  category: string
   weekProgress: DayProgressType[]
+  repeat: string
   completed: boolean
 }
 
