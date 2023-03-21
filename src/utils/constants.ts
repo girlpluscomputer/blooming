@@ -7,28 +7,48 @@ export const ROUTES = [
 ]
 
 export const WEEK_PROGRESS: DayProgressType[] = [
-  { id: 'monday', dayOfTheWeek: 'Monday', completed: false, disabled: false },
-  { id: 'tuesday', dayOfTheWeek: 'Tuesday', completed: false, disabled: false },
   {
-    id: 'wednesday',
+    id: 0,
+    dayOfTheWeek: 'Monday',
+    completed: false,
+    disabled: false
+  },
+  {
+    id: 1,
+    dayOfTheWeek: 'Tuesday',
+    completed: false,
+    disabled: false
+  },
+  {
+    id: 2,
     dayOfTheWeek: 'Wednesday',
     completed: false,
     disabled: false
   },
   {
-    id: 'thursday',
+    id: 3,
     dayOfTheWeek: 'Thursday',
     completed: false,
     disabled: false
   },
-  { id: 'friday', dayOfTheWeek: 'Friday', completed: false, disabled: false },
   {
-    id: 'saturday',
+    id: 4,
+    dayOfTheWeek: 'Friday',
+    completed: false,
+    disabled: false
+  },
+  {
+    id: 5,
     dayOfTheWeek: 'Saturday',
     completed: false,
     disabled: false
   },
-  { id: 'sunday', dayOfTheWeek: 'Sunday', completed: false, disabled: false }
+  {
+    id: 6,
+    dayOfTheWeek: 'Sunday',
+    completed: false,
+    disabled: false
+  }
 ]
 
 export const MOCK_HABITS: HabitType[] = [

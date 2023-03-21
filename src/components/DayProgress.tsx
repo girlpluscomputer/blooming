@@ -23,7 +23,7 @@ export const DayProgress = ({
           fontWeight="bold"
           color={completed ? 'white' : '#000'}
         >
-          {dayOfTheWeek.charAt(0)}
+          {dayOfTheWeek.toString().charAt(0)}
         </Text>
       </Box>
     )

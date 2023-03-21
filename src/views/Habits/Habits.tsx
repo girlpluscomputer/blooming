@@ -1,24 +1,76 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Box, Button, Heading, useDisclosure } from '@chakra-ui/react'
 
 import { CreateHabitModal, HabitCard, Header } from '@/components'
-import { HabitType } from './types'
+import { DayProgressType, HabitType } from './types'
 import AddIcon from '../../../public/add.svg'
 
 const Habits = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [habits, setHabits] = useState<HabitType[]>([])
+  const todaysDate = new Date().toLocaleDateString('en-us', {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric'
+  })
+
+  useEffect(() => {
+    const getFromStorage = () => {
+      if (typeof window !== 'undefined') {
+        const dataFromStorage = localStorage.getItem('habits')
+
+        return dataFromStorage ? JSON.parse(dataFromStorage) : []
+      }
+
+      return []
+    }
+    const habitsFromStorage = getFromStorage()
+
+    setHabits(habitsFromStorage)
+  }, [])
+
+  useEffect(() => {
+    const saveInStorage = () => {
+      if (typeof window !== 'undefined' && habits.length) {
+        localStorage.setItem('habits', JSON.stringify(habits))
+      }
+    }
+
+    saveInStorage()
+  }, [habits])
 
   const createNewHabit = (newHabit: HabitType) => {
     setHabits(prevHabits => [...prevHabits, newHabit])
   }
 
+  const getUpdatedWeekProgress = (weekProgress: DayProgressType[]) => {
+    const today = new Date().getDay()
+
+    return weekProgress.map(day =>
+      day.id === today && !day.disabled
+        ? { ...day, completed: !day.completed }
+        : day
+    )
+  }
+
   const completeHabit = (habitId: string) => {
     const updatedHabits = habits.map((habit: HabitType) => {
       if (habit.id === habitId) {
-        return habit.completed
-          ? { ...habit, completed: false, currentDay: habit.currentDay - 1 }
-          : { ...habit, completed: true, currentDay: habit.currentDay + 1 }
+        if (habit.completed) {
+          return {
+            ...habit,
+            completed: false,
+            currentDay: habit.currentDay - 1,
+            weekProgress: getUpdatedWeekProgress(habit.weekProgress)
+          }
+        } else {
+          return {
+            ...habit,
+            completed: true,
+            currentDay: habit.currentDay + 1,
+            weekProgress: getUpdatedWeekProgress(habit.weekProgress)
+          }
+        }
       }
 
       return habit
@@ -36,7 +88,7 @@ const Habits = () => {
           fontSize="24px"
           color="var(--chakra-colors-lightGray)"
         >
-          Monday, February 27th
+          {todaysDate}
         </Heading>
       </Header>
       <Box p="40px">
@@ -74,8 +126,8 @@ const Habits = () => {
             ))}
           </Box>
         ) : (
-          // TODO: replace with new copy
-          <span>Start by creating a habit</span>
+          // TODO: create the empty status
+          <span>s</span>
         )}
       </Box>
       <CreateHabitModal
