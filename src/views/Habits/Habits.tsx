@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react'
+import { useQuery } from '@apollo/client'
 import { Box, Button, Heading, useDisclosure } from '@chakra-ui/react'
 
 import { CreateHabitModal, HabitCard, Header } from '@/components'
 import { DayProgressType, HabitType } from './types'
 import AddIcon from '../../../public/add.svg'
+import { getHabitsQuery } from './getHabitsQuery'
 
 const Habits = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [habits, setHabits] = useState<HabitType[]>([])
+  const { data, loading, error } = useQuery(getHabitsQuery)
   const todaysDate = new Date().toLocaleDateString('en-us', {
     weekday: 'long',
     month: 'long',
@@ -79,6 +82,10 @@ const Habits = () => {
     setHabits(updatedHabits)
   }
 
+  if (loading) {
+    return <span>Loading...</span>
+  }
+
   return (
     <>
       <Header>
@@ -110,14 +117,14 @@ const Habits = () => {
             <AddIcon />
           </Button>
         </Box>
-        {habits.length > 0 ? (
+        {data.habits.length > 0 ? (
           <Box
             pt="20px"
             display="grid"
             gridTemplateColumns="repeat(3, 200px)"
             gap="12px"
           >
-            {habits.map(habit => (
+            {data.habits.map(habit => (
               <HabitCard
                 key={habit.id}
                 habit={habit}
