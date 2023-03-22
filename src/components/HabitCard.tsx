@@ -28,13 +28,9 @@ export const HabitCard = ({ habit, completeHabit }: HabitCardProps) => {
       maxWidth="200px"
       height="180px"
       p="16px"
-      bg={
-        completed
-          ? 'radial-gradient(50% 50% at 50% 50%, #B1D5AF 0%, rgba(177, 213, 175, 0.42) 89.06%)'
-          : '#fff'
-      }
+      bg={completed ? '#e6daf6' : '#fff'}
       _hover={{
-        border: '3px solid rgba(177, 213, 175, 1)',
+        border: '3px solid #c8a6f4',
         cursor: 'pointer'
       }}
       onClick={() => completeHabit(habit.id)}
