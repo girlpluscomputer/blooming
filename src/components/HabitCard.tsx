@@ -28,6 +28,7 @@ export const HabitCard = ({ habit, completeHabit }: HabitCardProps) => {
       maxWidth="200px"
       height="180px"
       p="16px"
+      borderRadius="20px"
       bg={completed ? '#e6daf6' : '#fff'}
       _hover={{
         border: '3px solid #c8a6f4',
