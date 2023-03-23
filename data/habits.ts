@@ -1,5 +1,3 @@
-import { HabitType } from '@/views/Habits/types'
-
 export const habits = [
   {
     title: 'Workout',
@@ -8,7 +6,7 @@ export const habits = [
     category: 'health',
     completed: false,
     repeat: 'daily',
-    currentDay: 0
+    currentDay: 1
   },
   {
     title: 'Workout',
@@ -17,6 +15,6 @@ export const habits = [
     category: 'health',
     completed: false,
     repeat: 'daily',
-    currentDay: 0
+    currentDay: 1
   }
 ]

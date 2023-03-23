@@ -4,8 +4,8 @@ import { Box, Button, Heading, useDisclosure } from '@chakra-ui/react'
 
 import { CreateHabitModal, HabitCard, Header } from '@/components'
 import { DayProgressType, HabitType } from './types'
-import AddIcon from '../../../public/add.svg'
 import { getHabitsQuery } from './getHabitsQuery'
+import AddIcon from '../../../public/add.svg'
 
 const Habits = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -18,29 +18,14 @@ const Habits = () => {
   })
 
   useEffect(() => {
-    const getFromStorage = () => {
-      if (typeof window !== 'undefined') {
-        const dataFromStorage = localStorage.getItem('habits')
-
-        return dataFromStorage ? JSON.parse(dataFromStorage) : []
-      }
-
-      return []
+    if (data) {
+      setHabits(data.habits)
     }
-    const habitsFromStorage = getFromStorage()
+  }, [data])
 
-    setHabits(habitsFromStorage)
-  }, [])
-
-  useEffect(() => {
-    const saveInStorage = () => {
-      if (typeof window !== 'undefined' && habits.length) {
-        localStorage.setItem('habits', JSON.stringify(habits))
-      }
-    }
-
-    saveInStorage()
-  }, [habits])
+  // useEffect(() => {
+  //   // save in db
+  // }, [habits])
 
   const createNewHabit = (newHabit: HabitType) => {
     setHabits(prevHabits => [...prevHabits, newHabit])
@@ -117,14 +102,14 @@ const Habits = () => {
             <AddIcon />
           </Button>
         </Box>
-        {data.habits.length > 0 ? (
+        {habits.length > 0 ? (
           <Box
             pt="20px"
             display="grid"
             gridTemplateColumns="repeat(3, 200px)"
             gap="12px"
           >
-            {data.habits.map(habit => (
+            {habits.map(habit => (
               <HabitCard
                 key={habit.id}
                 habit={habit}
