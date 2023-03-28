@@ -6,10 +6,6 @@ export const getHabitsQuery = gql`
       id
       title
       description
-      totalOfDays
-      currentDay
-      category
-      createdAt
     }
   }
 `

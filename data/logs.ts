@@ -1,11 +1,8 @@
-import { WEEKDAYS } from '@/utils/constants'
-
 export const logs = [
   {
+    id: 'log-1',
     completed: false,
     disabled: false,
-    weekday: 'Tuesday',
-    id: 'log-1',
-    habitId: 'habit-1'
+    weekday: 'Tuesday'
   }
 ]

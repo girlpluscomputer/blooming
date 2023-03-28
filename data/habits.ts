@@ -1,3 +1,5 @@
+import { logs } from './logs'
+
 export const habits = [
   {
     id: 'habit-1',
@@ -7,8 +9,7 @@ export const habits = [
     description: '30 min per day',
     repeat: 'daily',
     completed: false,
-    categoryId: 'category-1',
-    userId: 'test-user'
+    category: 'category-1'
   },
   {
     id: 'habit-2',
@@ -18,7 +19,6 @@ export const habits = [
     description: '30 min per day',
     repeat: 'daily',
     completed: false,
-    categoryId: 'category-1',
-    userId: 'test-user'
+    category: 'category-1'
   }
 ]
