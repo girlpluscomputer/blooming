@@ -7,11 +7,15 @@ const prisma = new PrismaClient()
 async function main() {
   await prisma.user.create({
     data: {
-      id: 'test-user',
       email: 'test@user.com',
       habits: {
-        createMany: {
-          data: habits
+        create: habits
+      }
+    },
+    include: {
+      habits: {
+        include: {
+          logs: true
         }
       }
     }
