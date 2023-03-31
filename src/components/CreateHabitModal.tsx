@@ -14,11 +14,8 @@ import { CreateHabitForm } from './CreateHabitForm'
 
 export const CreateHabitModal = ({
   isOpen,
-  onClose,
-  createNewHabit
-}: Omit<ModalProps, 'children'> & {
-  createNewHabit: (newHabit: HabitType) => void
-}) => {
+  onClose
+}: Omit<ModalProps, 'children'>) => {
   return (
     <Modal size="xl" isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -39,7 +36,7 @@ export const CreateHabitModal = ({
           />
         </Box>
         <ModalBody p="0">
-          <CreateHabitForm createNewHabit={createNewHabit} onClose={onClose} />
+          <CreateHabitForm onClose={onClose} />
         </ModalBody>
       </ModalContent>
     </Modal>

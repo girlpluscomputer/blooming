@@ -10,10 +10,9 @@ import { DayProgress } from './DayProgress'
 import { HabitType } from '@/views/Habits/types'
 export interface HabitCardProps {
   habit: HabitType
-  completeHabit: (habitId: string) => void
 }
 
-export const HabitCard = ({ habit, completeHabit }: HabitCardProps) => {
+export const HabitCard = ({ habit }: HabitCardProps) => {
   const {
     currentDay,
     totalOfDays,
@@ -34,7 +33,7 @@ export const HabitCard = ({ habit, completeHabit }: HabitCardProps) => {
         border: '3px solid #c8a6f4',
         cursor: 'pointer'
       }}
-      onClick={() => completeHabit(habit.id)}
+      onClick={() => {}}
     >
       <CardBody
         p="0"

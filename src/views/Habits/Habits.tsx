@@ -6,66 +6,48 @@ import { CreateHabitModal, HabitCard, Header } from '@/components'
 import { DayProgressType, HabitType } from './types'
 import { getHabitsQuery } from './getHabitsQuery'
 import AddIcon from '../../../public/add.svg'
+import { getTodayDateFormatted } from '@/utils/getTodayDateFormatted'
 
 const Habits = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [habits, setHabits] = useState<HabitType[]>([])
-  const { data, loading, error } = useQuery(getHabitsQuery)
-  const todaysDate = new Date().toLocaleDateString('en-us', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric'
-  })
+  const { data, loading } = useQuery(getHabitsQuery)
+  const habits: HabitType[] = data ? data.habits : []
 
-  useEffect(() => {
-    if (data) {
-      setHabits(data.habits)
-    }
-  }, [data])
+  // const getUpdatedWeekProgress = (weekProgress: DayProgressType[]) => {
+  //   const today = new Date().getDay()
 
-  // useEffect(() => {
-  //   // save in db
-  // }, [habits])
+  //   return weekProgress.map(day =>
+  //     day.id === today && !day.disabled
+  //       ? { ...day, completed: !day.completed }
+  //       : day
+  //   )
+  // }
 
-  const createNewHabit = (newHabit: HabitType) => {
-    setHabits(prevHabits => [...prevHabits, newHabit])
-  }
+  // const completeHabit = (habitId: string) => {
+  //   const updatedHabits = habits.map((habit: HabitType) => {
+  //     if (habit.id === habitId) {
+  //       if (habit.completed) {
+  //         return {
+  //           ...habit,
+  //           completed: false,
+  //           currentDay: habit.currentDay - 1,
+  //           weekProgress: getUpdatedWeekProgress(habit.weekProgress)
+  //         }
+  //       } else {
+  //         return {
+  //           ...habit,
+  //           completed: true,
+  //           currentDay: habit.currentDay + 1,
+  //           weekProgress: getUpdatedWeekProgress(habit.weekProgress)
+  //         }
+  //       }
+  //     }
 
-  const getUpdatedWeekProgress = (weekProgress: DayProgressType[]) => {
-    const today = new Date().getDay()
+  //     return habit
+  //   })
 
-    return weekProgress.map(day =>
-      day.id === today && !day.disabled
-        ? { ...day, completed: !day.completed }
-        : day
-    )
-  }
-
-  const completeHabit = (habitId: string) => {
-    const updatedHabits = habits.map((habit: HabitType) => {
-      if (habit.id === habitId) {
-        if (habit.completed) {
-          return {
-            ...habit,
-            completed: false,
-            currentDay: habit.currentDay - 1,
-            weekProgress: getUpdatedWeekProgress(habit.weekProgress)
-          }
-        } else {
-          return {
-            ...habit,
-            completed: true,
-            currentDay: habit.currentDay + 1,
-            weekProgress: getUpdatedWeekProgress(habit.weekProgress)
-          }
-        }
-      }
-
-      return habit
-    })
-
-    setHabits(updatedHabits)
-  }
+  //   // setHabits(updatedHabits)
+  // }
 
   if (loading) {
     return <span>Loading...</span>
@@ -80,7 +62,7 @@ const Habits = () => {
           fontSize="24px"
           color="var(--chakra-colors-lightGray)"
         >
-          {todaysDate}
+          {getTodayDateFormatted()}
         </Heading>
       </Header>
       <Box p="40px">
@@ -110,23 +92,14 @@ const Habits = () => {
             gap="12px"
           >
             {habits.map(habit => (
-              <HabitCard
-                key={habit.id}
-                habit={habit}
-                completeHabit={completeHabit}
-              />
+              <HabitCard key={habit.id} habit={habit} />
             ))}
           </Box>
         ) : (
-          // TODO: create the empty status
-          <span>s</span>
+          <span>Start by creating a habit</span>
         )}
       </Box>
-      <CreateHabitModal
-        isOpen={isOpen}
-        onClose={onClose}
-        createNewHabit={createNewHabit}
-      />
+      <CreateHabitModal isOpen={isOpen} onClose={onClose} />
     </>
   )
 }

@@ -1,21 +1,16 @@
 import { FormEvent, useState } from 'react'
+import { useMutation } from '@apollo/client'
 import { Box, Button, Input, Select, Text } from '@chakra-ui/react'
 
-import { WEEK_PROGRESS } from '@/utils/constants'
-import { HabitType } from '@/views/Habits/types'
+import { createHabitMutation } from '@/views/Habits/createHabitMutation'
 
-export const CreateHabitForm = ({
-  createNewHabit,
-  onClose
-}: {
-  createNewHabit: (newHabit: HabitType) => void
-  onClose: () => void
-}) => {
+export const CreateHabitForm = ({ onClose }: { onClose: () => void }) => {
   const [title, setTitle] = useState<string>('')
   const [description, setDescription] = useState<string>('')
   const [category, setCategory] = useState<string>('')
   const [totalOfDays, setTotalOfDays] = useState<number>(21)
   const [repeat, setRepeat] = useState<string>('')
+  const [createHabit] = useMutation(createHabitMutation)
   const isSubmitButtonDisabled =
     !Boolean(title) ||
     !Boolean(description) ||
@@ -26,20 +21,20 @@ export const CreateHabitForm = ({
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    const newHabit: HabitType = {
-      id: `habit-${title}`,
+    const newHabit = {
+      userId: 'af833866-e984-4ec4-9915-ba5d4c7166fd',
       totalOfDays,
-      currentDay: 0,
+      currentDay: 1,
       title,
       description,
       category,
-      weekProgress: WEEK_PROGRESS,
       repeat,
-      completed: false,
-      createdAt: new Date().toString()
+      completed: false
     }
 
-    createNewHabit(newHabit)
+    createHabit({
+      variables: newHabit
+    })
     onClose()
   }
 

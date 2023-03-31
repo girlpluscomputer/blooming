@@ -48,6 +48,7 @@ export const typeDefs = gql`
       category: String!
       repeat: String!
     ): User!
+
     createLog(habitId: String!, completed: Boolean!, disabled: Boolean!): Log!
   }
 `

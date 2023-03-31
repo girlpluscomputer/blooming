@@ -49,7 +49,7 @@ export const resolvers = {
           logs: {
             create: {
               completed: _args.completed,
-              weekday: 'Thursday', // TODO: Create function to get current weekday
+              weekday: 'Thursday',
               disabled: _args.disabled
             }
           }
