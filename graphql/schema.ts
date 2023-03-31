@@ -1,11 +1,15 @@
 import { gql } from 'apollo-server-micro'
 
 export const typeDefs = gql`
-  type User {
+  type Log {
     id: String
-    email: String
-    habits: Habit
+    createdAt: String
+    completed: Boolean
+    weekday: String
+    disabled: Boolean
+    habit: Habit
   }
+
   type Habit {
     id: String
     totalOfDays: Int
@@ -16,10 +20,34 @@ export const typeDefs = gql`
     repeat: String
     completed: Boolean
     createdAt: String
-    userId: String
+    updatedAt: String
+    user: User
+    logs: [Log]
   }
+
+  type User {
+    id: String
+    email: String
+    habits: [Habit]
+  }
+
   type Query {
     habits: [Habit]!
     users: [User]!
+    logs: [Log]!
+  }
+
+  type Mutation {
+    createHabit(
+      userId: String!
+      title: String!
+      description: String!
+      totalOfDays: Int!
+      currentDay: Int!
+      completed: Boolean!
+      category: String!
+      repeat: String!
+    ): User!
+    createLog(habitId: String!, completed: Boolean!, disabled: Boolean!): Log!
   }
 `
