@@ -5,7 +5,7 @@ export const typeDefs = gql`
     id: String
     createdAt: String
     completed: Boolean
-    weekday: String
+    weekDay: String
     disabled: Boolean
     habit: Habit
   }

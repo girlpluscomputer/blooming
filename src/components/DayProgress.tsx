@@ -4,7 +4,7 @@ import { DayProgressType } from '@/views/Habits/types'
 export const DayProgress = ({
   disabled,
   completed,
-  dayOfTheWeek
+  weekDay
 }: DayProgressType) => {
   if (!disabled) {
     return (
@@ -23,12 +23,11 @@ export const DayProgress = ({
           fontWeight="bold"
           color={completed ? 'white' : '#000'}
         >
-          {dayOfTheWeek.toString().charAt(0)}
+          {weekDay[0]}
         </Text>
       </Box>
     )
   }
-
   return (
     <Box
       display="flex"
@@ -40,7 +39,7 @@ export const DayProgress = ({
       height="20px"
     >
       <Text fontSize="9px" fontWeight="bold" color="white">
-        {dayOfTheWeek.charAt(0)}
+        {weekDay[0]}
       </Text>
     </Box>
   )

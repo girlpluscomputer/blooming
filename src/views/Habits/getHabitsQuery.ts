@@ -16,7 +16,7 @@ export const getHabitsQuery = gql`
         createdAt
         completed
         disabled
-        weekday
+        weekDay
       }
     }
   }

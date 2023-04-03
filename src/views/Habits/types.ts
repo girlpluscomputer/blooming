@@ -1,22 +1,13 @@
-export enum Weekday {
-  Sunday = 0,
-  Monday = 1,
-  Tuesday = 2,
-  Wednesday = 3,
-  Thursday = 4,
-  Friday = 5,
-  Saturday = 6
-}
 export interface DayProgressType {
-  id: Weekday
-  dayOfTheWeek: keyof typeof Weekday
-  disabled?: boolean
+  id: string
+  weekDay: string
+  disabled: boolean
   completed: boolean
 }
 
 export interface LogType {
   id: string
-  completed: string
+  completed: boolean
   createdAt: string
   disabled: boolean
   weekDay: string

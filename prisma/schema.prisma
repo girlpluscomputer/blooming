@@ -22,7 +22,7 @@ model Log {
   completed Boolean
   habit     Habit    @relation(fields: [habitId], references: [id])
   habitId   String
-  weekday   String
+  weekDay   String
   disabled  Boolean
 }
 
