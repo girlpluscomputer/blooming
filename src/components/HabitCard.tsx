@@ -6,21 +6,14 @@ import {
   IconButton,
   Heading
 } from '@chakra-ui/react'
-import { DayProgress } from './DayProgress'
+import { HabitWeekLogs } from './HabitWeekLogs'
 import { HabitType } from '@/views/Habits/types'
 export interface HabitCardProps {
   habit: HabitType
 }
 
 export const HabitCard = ({ habit }: HabitCardProps) => {
-  const {
-    currentDay,
-    totalOfDays,
-    title,
-    description,
-    weekProgress,
-    completed
-  } = habit
+  const { currentDay, totalOfDays, title, description, completed, logs } = habit
 
   return (
     <Card
@@ -54,9 +47,7 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
           </Text>
         </Box>
         <Box display="flex" justifyContent="space-between">
-          {weekProgress?.map(dayProgress => (
-            <DayProgress key={dayProgress.id} {...dayProgress} />
-          ))}
+          <HabitWeekLogs logs={logs} />
         </Box>
       </CardBody>
     </Card>

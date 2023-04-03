@@ -11,6 +11,13 @@ export const getHabitsQuery = gql`
       currentDay
       repeat
       totalOfDays
+      logs {
+        id
+        createdAt
+        completed
+        disabled
+        weekday
+      }
     }
   }
 `

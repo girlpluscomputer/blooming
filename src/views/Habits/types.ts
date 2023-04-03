@@ -14,6 +14,13 @@ export interface DayProgressType {
   completed: boolean
 }
 
+export interface LogType {
+  id: string
+  completed: string
+  createdAt: string
+  disabled: boolean
+  weekDay: string
+}
 export interface HabitType {
   id: string
   totalOfDays: number
@@ -25,4 +32,5 @@ export interface HabitType {
   repeat: string
   completed: boolean
   createdAt: string
+  logs: LogType[]
 }

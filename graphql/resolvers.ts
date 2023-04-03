@@ -14,7 +14,11 @@ export const resolvers = {
       return context.prisma.user.findUnique({
         where: { id: prismaHabit.userId }
       })
-    }
+    },
+    logs: ({ id }, _, context) =>
+      context.prisma.log.findMany({
+        where: { habitId: id }
+      })
   },
   Query: {
     habits: (root, _args, context) => context.prisma.habit.findMany(),
