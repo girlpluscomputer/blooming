@@ -1,6 +1,4 @@
-import { WEEKDAYS } from '@/utils/constants'
-import { getTomorrowDate } from '@/utils/getTomorrowDate'
-import { LogStatus } from '@/views/Habits/types'
+import { getInitialLogs } from '@/utils/getInitialLogs'
 
 export const resolvers = {
   User: {
@@ -54,9 +52,8 @@ export const resolvers = {
               category: _args.category,
               completed: _args.completed,
               logs: {
-                create: {
-                  expiresAt: getTomorrowDate(),
-                  status: LogStatus.INITIAL
+                createMany: {
+                  data: getInitialLogs(_args.totalOfDays)
                 }
               }
             }

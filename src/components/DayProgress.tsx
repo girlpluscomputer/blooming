@@ -1,45 +1,19 @@
 import { Box, Text } from '@chakra-ui/react'
-import { DayProgressType } from '@/views/Habits/types'
 
-export const DayProgress = ({
-  disabled,
-  completed,
-  weekDay
-}: DayProgressType) => {
-  if (!disabled) {
-    return (
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        rounded="100%"
-        bg={completed ? '#000' : '#white'}
-        border={completed ? 'none' : '1px solid #000'}
-        w="20px"
-        height="20px"
-      >
-        <Text
-          fontSize="9px"
-          fontWeight="bold"
-          color={completed ? 'white' : '#000'}
-        >
-          {weekDay[0]}
-        </Text>
-      </Box>
-    )
-  }
+export const DayProgress = () => {
   return (
     <Box
       display="flex"
       justifyContent="center"
       alignItems="center"
       rounded="100%"
-      bg="var(--chakra-colors-gray)"
+      bg="var(--chakra-colors-white)"
+      border="2px solid var(--chakra-colors-black)"
       w="20px"
       height="20px"
     >
-      <Text fontSize="9px" fontWeight="bold" color="white">
-        {weekDay[0]}
+      <Text fontSize="9px" fontWeight="bold" color="black">
+        x
       </Text>
     </Box>
   )

@@ -1,9 +1,3 @@
-export interface DayProgressType {
-  id: string
-  weekDay: string
-  status: LogStatus
-}
-
 export enum LogStatus {
   INITIAL = 'INITIAL',
   COMPLETED = 'COMPLETED',
@@ -24,7 +18,6 @@ export interface HabitType {
   title: string
   description: string
   category: string
-  weekProgress: DayProgressType[]
   completed: boolean
   createdAt: string
   logs: LogType[]
