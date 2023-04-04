@@ -1,4 +1,6 @@
 import { WEEKDAYS } from '@/utils/constants'
+import { getTomorrowDate } from '@/utils/getTomorrowDate'
+import { LogStatus } from '@/views/Habits/types'
 
 export const resolvers = {
   User: {
@@ -22,6 +24,17 @@ export const resolvers = {
         where: { habitId: id }
       })
   },
+  Log: {
+    habit: async ({ id }, _, context) => {
+      const prismaLog = await context.prisma.log.findUnique({
+        where: { id: id }
+      })
+
+      return context.prisma.habit.findUnique({
+        where: { id: prismaLog.habitId }
+      })
+    }
+  },
   Query: {
     habits: (root, _args, context) => context.prisma.habit.findMany(),
     users: (root, _args, context) => context.prisma.user.findMany(),
@@ -43,7 +56,7 @@ export const resolvers = {
               logs: {
                 create: {
                   expiresAt: getTomorrowDate(),
-                  status: LogStatus.INIT
+                  status: LogStatus.INITIAL
                 }
               }
             }

@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-micro'
 
 export const typeDefs = gql`
   enum LogStatus {
-    INIT
+    INITIAL
     COMPLETED
     EXPIRED
   }
@@ -11,7 +11,7 @@ export const typeDefs = gql`
     id: String
     createdAt: String
     expiresAt: String
-    status: String
+    status: LogStatus
     habit: Habit
   }
 

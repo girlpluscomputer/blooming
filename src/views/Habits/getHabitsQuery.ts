@@ -13,9 +13,7 @@ export const getHabitsQuery = gql`
       logs {
         id
         createdAt
-        completed
-        disabled
-        weekDay
+        expiresAt
       }
     }
   }

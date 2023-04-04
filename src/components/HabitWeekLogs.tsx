@@ -1,5 +1,5 @@
 import { getCurrentWeek } from '@/utils/getCurrentWeek'
-import { LogType } from '@/views/Habits/types'
+import { LogStatus, LogType } from '@/views/Habits/types'
 import { DayProgress } from './DayProgress'
 
 export const HabitWeekLogs = ({ logs }: { logs: LogType[] }) => {
@@ -7,30 +7,22 @@ export const HabitWeekLogs = ({ logs }: { logs: LogType[] }) => {
 
   return (
     <>
-      {currentWeek.map(({ weekDay, date }) => {
+      <span>hey</span>
+      {/* {currentWeek.map(({ weekDay, date }) => {
         const log = logs.find(
           ({ createdAt }) =>
             new Date(Number(createdAt)).toLocaleDateString() === date
         )
 
-        return !!log ? (
+        return (
           <DayProgress
-            id={log.id}
-            key={log.id}
-            weekDay={log.weekDay}
-            disabled={log.disabled}
-            completed={log.completed}
-          />
-        ) : (
-          <DayProgress
-            id={date}
-            key={date}
+            id={log?.id}
+            key={log?.id}
             weekDay={weekDay}
-            disabled
-            completed={false}
+            status={log?.status}
           />
         )
-      })}
+      })} */}
     </>
   )
 }

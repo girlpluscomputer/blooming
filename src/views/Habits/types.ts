@@ -1,14 +1,13 @@
 export interface DayProgressType {
   id: string
   weekDay: string
-  disabled: boolean
-  completed: boolean
+  status: LogStatus
 }
 
 export enum LogStatus {
-  INIT,
-  COMPLETED,
-  EXPIRED
+  INITIAL = 'INITIAL',
+  COMPLETED = 'COMPLETED',
+  EXPIRED = 'EXPIRED'
 }
 
 export interface LogType {
