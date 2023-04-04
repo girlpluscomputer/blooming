@@ -1,12 +1,6 @@
 import { getInitialLogs } from '@/utils/getInitialLogs'
 
-export const resolvers = {
-  User: {
-    habits: ({ id }, _args, context) =>
-      context.prisma.habit.findMany({
-        where: { userId: id }
-      })
-  },
+export const habitResolver = {
   Habit: {
     user: async ({ id }, _, context) => {
       const prismaHabit = await context.prisma.habit.findUnique({
@@ -22,26 +16,12 @@ export const resolvers = {
         where: { habitId: id }
       })
   },
-  Log: {
-    habit: async ({ id }, _, context) => {
-      const prismaLog = await context.prisma.log.findUnique({
-        where: { id: id }
-      })
-
-      return context.prisma.habit.findUnique({
-        where: { id: prismaLog.habitId }
-      })
-    }
-  },
   Query: {
-    habits: (root, _args, context) => context.prisma.habit.findMany(),
-    users: (root, _args, context) => context.prisma.user.findMany(),
-    logs: (root, _args, context) => context.prisma.log.findMany()
+    habits: (root, _args, context) => context.prisma.habit.findMany()
   },
   Mutation: {
     createHabit: async (root, _args, context) =>
-      await context.prisma.user.update({
-        where: { id: _args.userId },
+      await context.prisma.habit.create({
         data: {
           habits: {
             create: {
@@ -51,18 +31,12 @@ export const resolvers = {
               currentDay: _args.currentDay,
               category: _args.category,
               completed: _args.completed,
+              userId: _args.userId,
               logs: {
                 createMany: {
                   data: getInitialLogs(_args.totalOfDays)
                 }
               }
-            }
-          }
-        },
-        include: {
-          habits: {
-            include: {
-              logs: true
             }
           }
         }
