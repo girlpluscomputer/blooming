@@ -1,12 +1,17 @@
 import { gql } from 'apollo-server-micro'
 
 export const typeDefs = gql`
+  enum LogStatus {
+    INIT
+    COMPLETED
+    EXPIRED
+  }
+
   type Log {
     id: String
     createdAt: String
-    completed: Boolean
-    weekDay: String
-    disabled: Boolean
+    expiresAt: String
+    status: String
     habit: Habit
   }
 
@@ -17,7 +22,6 @@ export const typeDefs = gql`
     title: String
     description: String
     category: String
-    repeat: String
     completed: Boolean
     createdAt: String
     updatedAt: String
@@ -46,9 +50,8 @@ export const typeDefs = gql`
       currentDay: Int!
       completed: Boolean!
       category: String!
-      repeat: String!
-    ): User!
+    ): Habit!
 
-    createLog(habitId: String!, completed: Boolean!, disabled: Boolean!): Log!
+    createLog(habitId: String!, expiresAt: String!, status: LogStatus!): Log!
   }
 `

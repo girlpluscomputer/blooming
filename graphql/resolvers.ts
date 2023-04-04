@@ -1,3 +1,5 @@
+import { WEEKDAYS } from '@/utils/constants'
+
 export const resolvers = {
   User: {
     habits: ({ id }, _args, context) =>
@@ -37,29 +39,22 @@ export const resolvers = {
               totalOfDays: _args.totalOfDays,
               currentDay: _args.currentDay,
               category: _args.category,
-              repeat: _args.repeat,
-              completed: _args.completed
-            }
-          }
-        },
-        include: {
-          habits: true
-        }
-      }),
-    createLog: async (root, _args, context) =>
-      await context.prisma.habit.update({
-        where: { id: _args.habitId },
-        data: {
-          logs: {
-            create: {
               completed: _args.completed,
-              weekday: 'Thursday',
-              disabled: _args.disabled
+              logs: {
+                create: {
+                  expiresAt: getTomorrowDate(),
+                  status: LogStatus.INIT
+                }
+              }
             }
           }
         },
         include: {
-          logs: true
+          habits: {
+            include: {
+              logs: true
+            }
+          }
         }
       })
   }

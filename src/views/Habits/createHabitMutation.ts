@@ -9,7 +9,6 @@ export const createHabitMutation = gql`
     $currentDay: Int!
     $completed: Boolean!
     $category: String!
-    $repeat: String!
   ) {
     createHabit(
       userId: $userId
@@ -19,10 +18,9 @@ export const createHabitMutation = gql`
       currentDay: $currentDay
       completed: $completed
       category: $category
-      repeat: $repeat
     ) {
       id
-      email
+      title
     }
   }
 `

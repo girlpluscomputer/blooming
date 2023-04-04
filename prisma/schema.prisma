@@ -16,14 +16,19 @@ model User {
   habits Habit[]
 }
 
+enum LogStatus {
+  INITIAL
+  COMPLETED
+  EXPIRED
+}
+
 model Log {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  completed Boolean
-  habit     Habit    @relation(fields: [habitId], references: [id])
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  expiresAt DateTime
+  status    LogStatus
+  habit     Habit     @relation(fields: [habitId], references: [id])
   habitId   String
-  weekDay   String
-  disabled  Boolean
 }
 
 model Habit {
@@ -33,7 +38,6 @@ model Habit {
   title       String
   description String?
   category    String
-  repeat      String
   completed   Boolean
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

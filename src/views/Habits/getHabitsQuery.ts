@@ -9,7 +9,6 @@ export const getHabitsQuery = gql`
       category
       completed
       currentDay
-      repeat
       totalOfDays
       logs {
         id

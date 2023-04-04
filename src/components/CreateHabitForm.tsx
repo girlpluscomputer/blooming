@@ -1,4 +1,5 @@
 import { FormEvent, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useMutation } from '@apollo/client'
 import { Box, Button, Input, Select, Text } from '@chakra-ui/react'
 
@@ -9,32 +10,32 @@ export const CreateHabitForm = ({ onClose }: { onClose: () => void }) => {
   const [description, setDescription] = useState<string>('')
   const [category, setCategory] = useState<string>('')
   const [totalOfDays, setTotalOfDays] = useState<number>(21)
-  const [repeat, setRepeat] = useState<string>('')
+  const router = useRouter()
   const [createHabit] = useMutation(createHabitMutation)
   const isSubmitButtonDisabled =
     !Boolean(title) ||
     !Boolean(description) ||
     !Boolean(category) ||
-    !Boolean(totalOfDays) ||
-    !Boolean(repeat)
+    !Boolean(totalOfDays)
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     const newHabit = {
+      // TODO: Get dynamically user id
       userId: 'af833866-e984-4ec4-9915-ba5d4c7166fd',
       totalOfDays,
       currentDay: 1,
       title,
       description,
       category,
-      repeat,
       completed: false
     }
 
     createHabit({
       variables: newHabit
     })
+    router.refresh()
     onClose()
   }
 
@@ -111,19 +112,6 @@ export const CreateHabitForm = ({ onClose }: { onClose: () => void }) => {
             <Text ml="8px">days</Text>
           </Box>
         </Box>
-        <Select
-          placeholder="Only weekdays / weekends / everyday"
-          border="2px solid var(--chakra-colors-background)"
-          _focus={{
-            border: '1px solid var(--chakra-colors-blue)'
-          }}
-          value={repeat}
-          onChange={event => setRepeat(event.target.value)}
-        >
-          <option value="weekdays">weekdays</option>
-          <option value="weekends">weekends</option>
-          <option value="everyday">everyday</option>
-        </Select>
         <Box display="flex" justifyContent="flex-end">
           <Button
             type="submit"

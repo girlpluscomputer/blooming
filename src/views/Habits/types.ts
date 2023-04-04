@@ -5,13 +5,19 @@ export interface DayProgressType {
   completed: boolean
 }
 
+export enum LogStatus {
+  INIT,
+  COMPLETED,
+  EXPIRED
+}
+
 export interface LogType {
   id: string
-  completed: boolean
   createdAt: string
-  disabled: boolean
-  weekDay: string
+  expiresAt: string
+  status: LogStatus
 }
+
 export interface HabitType {
   id: string
   totalOfDays: number
@@ -20,7 +26,6 @@ export interface HabitType {
   description: string
   category: string
   weekProgress: DayProgressType[]
-  repeat: string
   completed: boolean
   createdAt: string
   logs: LogType[]
