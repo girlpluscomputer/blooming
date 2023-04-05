@@ -10,7 +10,6 @@ export const typeDefs = gql`
     category: String
     completed: Boolean
     createdAt: String
-    updatedAt: String
     user: User
     logs: [Log]
   }

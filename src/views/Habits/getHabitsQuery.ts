@@ -14,6 +14,7 @@ export const getHabitsQuery = gql`
         id
         createdAt
         expiresAt
+        completed
       }
     }
   }

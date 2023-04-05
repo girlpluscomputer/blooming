@@ -13,18 +13,12 @@ model User {
   habits Habit[]
 }
 
-enum LogStatus {
-  INITIAL
-  COMPLETED
-  EXPIRED
-}
-
 model Log {
-  id        String    @id @default(uuid())
-  createdAt DateTime  @default(now())
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
   expiresAt DateTime
-  status    LogStatus @default(INITIAL)
-  habit     Habit     @relation(fields: [habitId], references: [id])
+  completed Boolean  @default(false)
+  habit     Habit    @relation(fields: [habitId], references: [id])
   habitId   String
 }
 

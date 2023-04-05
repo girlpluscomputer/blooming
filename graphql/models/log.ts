@@ -11,12 +11,14 @@ export const typeDefs = gql`
     id: String
     createdAt: String
     expiresAt: String
-    status: LogStatus
+    completed: Boolean
+    status: String
     habit: Habit
   }
 
   type Query {
     logs: [Log]!
+    log(logId: String!): Log!
   }
 
   type Mutation {
