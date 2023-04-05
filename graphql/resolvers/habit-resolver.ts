@@ -23,20 +23,16 @@ export const habitResolver = {
     createHabit: async (root, _args, context) =>
       await context.prisma.habit.create({
         data: {
-          habits: {
-            create: {
-              title: _args.title,
-              description: _args.description,
-              totalOfDays: _args.totalOfDays,
-              currentDay: _args.currentDay,
-              category: _args.category,
-              completed: _args.completed,
-              userId: _args.userId,
-              logs: {
-                createMany: {
-                  data: getInitialLogs(_args.totalOfDays)
-                }
-              }
+          title: _args.title,
+          description: _args.description,
+          totalOfDays: _args.totalOfDays,
+          currentDay: _args.currentDay,
+          category: _args.category,
+          completed: _args.completed,
+          userId: _args.userId,
+          logs: {
+            createMany: {
+              data: getInitialLogs(_args.totalOfDays)
             }
           }
         }
