@@ -1,5 +1,6 @@
+import { WEEKDAYS } from '@/utils/constants'
 import { getCurrentWeek } from '@/utils/getCurrentWeek'
-import { LogType } from '@/views/Habits/types'
+import { LogStatus, LogType } from '@/views/Habits/types'
 
 import { DayProgress } from './DayProgress'
 
@@ -8,13 +9,38 @@ export const HabitWeekLogs = ({ logs }: { logs: LogType[] }) => {
 
   return (
     <>
-      {currentWeek.map(({ date }) => {
-        // const log = logs.find(
-        //   ({ createdAt }) =>
-        //     new Date(Number(createdAt)).toLocaleDateString() === date
-        // )
+      {currentWeek.map(({ date, weekDay }) => {
+        const todaysLog = logs.find(
+          ({ expiresAt }) =>
+            new Date(Number(expiresAt)).toLocaleDateString() === date
+        )
 
-        return <DayProgress key={date} />
+        const todaysLogWeekday =
+          WEEKDAYS[new Date(Number(todaysLog?.expiresAt)).getDay()]
+
+        if (todaysLog) {
+          console.log(
+            'log completed',
+            todaysLog.completed,
+            new Date(Number(todaysLog.expiresAt)).toLocaleDateString()
+          )
+          return (
+            <DayProgress
+              key={todaysLog.id}
+              status={
+                todaysLog.completed ? LogStatus.COMPLETED : LogStatus.INITIAL
+              }
+            >
+              {todaysLogWeekday.charAt(0)}
+            </DayProgress>
+          )
+        } else {
+          return (
+            <DayProgress key={date} status={LogStatus.DISABLED}>
+              {weekDay.charAt(0)}
+            </DayProgress>
+          )
+        }
       })}
     </>
   )

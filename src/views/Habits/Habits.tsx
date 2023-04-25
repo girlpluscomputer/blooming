@@ -2,16 +2,14 @@ import { useQuery } from '@apollo/client'
 import { Box, Button, Heading, useDisclosure } from '@chakra-ui/react'
 
 import { CreateHabitModal, HabitCard, Header } from '@/components'
+import { getTodayDateFormatted } from '@/utils/getTodayDateFormatted'
 import { HabitType } from './types'
 import { getHabitsQuery } from './getHabitsQuery'
 import AddIcon from '../../../public/add.svg'
-import { getTodayDateFormatted } from '@/utils/getTodayDateFormatted'
 
 const Habits = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { data, loading } = useQuery(getHabitsQuery, {
-    fetchPolicy: 'network-only'
-  })
+  const { data, loading } = useQuery(getHabitsQuery)
   const habits: HabitType[] = data ? data.habits : []
 
   // const getUpdatedWeekProgress = (weekProgress: DayProgressType[]) => {

@@ -1,14 +1,14 @@
 export enum LogStatus {
   INITIAL = 'INITIAL',
   COMPLETED = 'COMPLETED',
-  EXPIRED = 'EXPIRED'
+  DISABLED = 'DISABLED'
 }
 
 export interface LogType {
   id: string
-  createdAt: string
-  expiresAt: string
-  status: LogStatus
+  createdAt: Date
+  expiresAt: Date
+  completed: boolean
 }
 
 export interface HabitType {
