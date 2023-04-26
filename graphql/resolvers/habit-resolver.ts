@@ -36,6 +36,53 @@ export const habitResolver = {
             }
           }
         }
+      }),
+    toggleHabit: async (root, _args, context) => {
+      const habit = await context.prisma.habit.findUnique({
+        where: {
+          id: _args.habitId
+        }
       })
+
+      if (habit.completed === false) {
+        return await context.prisma.habit.update({
+          where: {
+            id: _args.habitId
+          },
+          data: {
+            completed: { set: true },
+            logs: {
+              update: {
+                where: {
+                  id: _args.logId
+                },
+                data: {
+                  completed: { set: true }
+                }
+              }
+            }
+          }
+        })
+      } else {
+        return await context.prisma.habit.update({
+          where: {
+            id: _args.habitId
+          },
+          data: {
+            completed: { set: false },
+            logs: {
+              update: {
+                where: {
+                  id: _args.logId
+                },
+                data: {
+                  completed: { set: false }
+                }
+              }
+            }
+          }
+        })
+      }
+    }
   }
 }

@@ -6,14 +6,28 @@ import {
   IconButton,
   Heading
 } from '@chakra-ui/react'
+import { useMutation } from '@apollo/client'
 import { HabitWeekLogs } from './HabitWeekLogs'
-import { HabitType } from '@/views/Habits/types'
+import { HabitType, LogType } from '@/views/Habits/types'
+import { toggleHabitMutation } from '@/views/Habits/toggleHabitMutation'
 export interface HabitCardProps {
   habit: HabitType
 }
 
 export const HabitCard = ({ habit }: HabitCardProps) => {
-  const { currentDay, totalOfDays, title, description, completed, logs } = habit
+  const { id, currentDay, totalOfDays, title, description, completed, logs } =
+    habit
+  const [toggleHabit] = useMutation(toggleHabitMutation)
+
+  const handleClick = async () => {
+    const todaysLog: LogType = logs.find(
+      ({ expiresAt }) =>
+        new Date(Number(expiresAt)).toLocaleDateString() ===
+        new Date().toLocaleDateString()
+    )!
+
+    await toggleHabit({ variables: { habitId: id, logId: todaysLog.id } })
+  }
 
   return (
     <Card
@@ -26,7 +40,7 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
         border: '3px solid #c8a6f4',
         cursor: 'pointer'
       }}
-      onClick={() => {}}
+      onClick={handleClick}
     >
       <CardBody
         p="0"
