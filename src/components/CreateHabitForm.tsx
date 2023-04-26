@@ -1,17 +1,17 @@
 import { FormEvent, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { useMutation } from '@apollo/client'
 import { Box, Button, Input, Select, Text } from '@chakra-ui/react'
 
-import { createHabitMutation } from '@/views/Habits/createHabitMutation'
+import { createHabitMutation, getHabitsQuery } from '@/views/Habits/graphql'
 
 export const CreateHabitForm = ({ onClose }: { onClose: () => void }) => {
   const [title, setTitle] = useState<string>('')
   const [description, setDescription] = useState<string>('')
   const [category, setCategory] = useState<string>('')
   const [totalOfDays, setTotalOfDays] = useState<number>(21)
-  const router = useRouter()
-  const [createHabit] = useMutation(createHabitMutation)
+  const [createHabit] = useMutation(createHabitMutation, {
+    refetchQueries: [{ query: getHabitsQuery }]
+  })
   const isSubmitButtonDisabled =
     !Boolean(title) ||
     !Boolean(description) ||
@@ -35,7 +35,6 @@ export const CreateHabitForm = ({ onClose }: { onClose: () => void }) => {
     createHabit({
       variables: newHabit
     })
-    router.refresh()
     onClose()
   }
 

@@ -19,11 +19,6 @@ export const HabitWeekLogs = ({ logs }: { logs: LogType[] }) => {
           WEEKDAYS[new Date(Number(todaysLog?.expiresAt)).getDay()]
 
         if (todaysLog) {
-          console.log(
-            'log completed',
-            todaysLog.completed,
-            new Date(Number(todaysLog.expiresAt)).toLocaleDateString()
-          )
           return (
             <DayProgress
               key={todaysLog.id}

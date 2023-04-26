@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const createHabitMutation = gql`
+const createHabitMutation = gql`
   mutation createHabitMutation(
     $userId: String!
     $title: String!
@@ -24,3 +24,5 @@ export const createHabitMutation = gql`
     }
   }
 `
+
+export default createHabitMutation

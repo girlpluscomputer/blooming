@@ -4,49 +4,13 @@ import { Box, Button, Heading, useDisclosure } from '@chakra-ui/react'
 import { CreateHabitModal, HabitCard, Header } from '@/components'
 import { getTodayDateFormatted } from '@/utils/getTodayDateFormatted'
 import { HabitType } from './types'
-import { getHabitsQuery } from './getHabitsQuery'
+import { getHabitsQuery } from './graphql'
 import AddIcon from '../../../public/add.svg'
 
 const Habits = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { data, loading } = useQuery(getHabitsQuery)
   const habits: HabitType[] = data ? data.habits : []
-
-  // const getUpdatedWeekProgress = (weekProgress: DayProgressType[]) => {
-  //   const today = new Date().getDay()
-
-  //   return weekProgress.map(day =>
-  //     day.id === today && !day.disabled
-  //       ? { ...day, completed: !day.completed }
-  //       : day
-  //   )
-  // }
-
-  // const completeHabit = (habitId: string) => {
-  //   const updatedHabits = habits.map((habit: HabitType) => {
-  //     if (habit.id === habitId) {
-  //       if (habit.completed) {
-  //         return {
-  //           ...habit,
-  //           completed: false,
-  //           currentDay: habit.currentDay - 1,
-  //           weekProgress: getUpdatedWeekProgress(habit.weekProgress)
-  //         }
-  //       } else {
-  //         return {
-  //           ...habit,
-  //           completed: true,
-  //           currentDay: habit.currentDay + 1,
-  //           weekProgress: getUpdatedWeekProgress(habit.weekProgress)
-  //         }
-  //       }
-  //     }
-
-  //     return habit
-  //   })
-
-  //   // setHabits(updatedHabits)
-  // }
 
   if (loading) {
     return <span>Loading...</span>
