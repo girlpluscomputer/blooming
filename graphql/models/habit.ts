@@ -29,5 +29,6 @@ export const typeDefs = gql`
       category: String!
     ): Habit!
     toggleHabit(habitId: String!, logId: String!): Habit!
+    removeHabit(habitId: String!): Habit!
   }
 `

@@ -37,6 +37,13 @@ export const habitResolver = {
           }
         }
       }),
+    removeHabit: async (root, _args, context) => {
+      return await context.prisma.habit.delete({
+        where: {
+          id: _args.habitId
+        }
+      })
+    },
     toggleHabit: async (root, _args, context) => {
       const habit = await context.prisma.habit.findUnique({
         where: {

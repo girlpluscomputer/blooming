@@ -18,7 +18,7 @@ model Log {
   createdAt DateTime @default(now())
   expiresAt DateTime
   completed Boolean  @default(false)
-  habit     Habit    @relation(fields: [habitId], references: [id])
+  habit     Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
   habitId   String
 }
 
@@ -33,6 +33,6 @@ model Habit {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   logs        Log[]
-  user        User     @relation(fields: [userId], references: [id])
+  user        User     @relation(fields: [userId], references: [id], onDelete: NoAction)
   userId      String
 }
