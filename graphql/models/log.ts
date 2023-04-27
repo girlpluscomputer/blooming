@@ -8,12 +8,12 @@ export const typeDefs = gql`
   }
 
   type Log {
-    id: String
-    createdAt: String
-    expiresAt: String
-    completed: Boolean
-    status: String
-    habit: Habit
+    id: String!
+    createdAt: String!
+    expiresAt: String!
+    completed: Boolean!
+    status: String!
+    habit: Habit!
   }
 
   type Query {

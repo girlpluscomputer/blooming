@@ -2,16 +2,16 @@ import { gql } from 'apollo-server-micro'
 
 export const typeDefs = gql`
   type Habit {
-    id: String
-    totalOfDays: Int
-    currentDay: Int
-    title: String
+    id: String!
+    totalOfDays: Int!
+    currentDay: Int!
+    title: String!
     description: String
-    category: String
-    completed: Boolean
-    createdAt: String
-    user: User
-    logs: [Log]
+    category: String!
+    completed: Boolean!
+    createdAt: String!
+    user: User!
+    logs: [Log]!
   }
 
   type Query {
