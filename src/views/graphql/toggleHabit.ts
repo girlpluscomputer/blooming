@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-const toggleHabitMutation = gql`
+export const TOGGLE_HABIT = gql`
   mutation ToggleHabit($habitId: String!, $logId: String!) {
     toggleHabit(habitId: $habitId, logId: $logId) {
       id
@@ -13,4 +13,3 @@ const toggleHabitMutation = gql`
     }
   }
 `
-export default toggleHabitMutation

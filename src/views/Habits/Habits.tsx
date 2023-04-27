@@ -4,12 +4,12 @@ import { Box, Button, Heading, useDisclosure } from '@chakra-ui/react'
 import { CreateHabitModal, HabitCard, Header } from '@/components'
 import { getTodayDateFormatted } from '@/utils/getTodayDateFormatted'
 import { HabitType } from './types'
-import { getHabitsQuery } from './graphql'
+import { GET_HABITS } from '../graphql'
 import AddIcon from '../../../public/add.svg'
 
 const Habits = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { data, loading } = useQuery(getHabitsQuery)
+  const { data, loading } = useQuery(GET_HABITS)
   const habits: HabitType[] = data ? data.habits : []
 
   if (loading) {

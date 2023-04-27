@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { Box, Button, Input, Select, Text } from '@chakra-ui/react'
 
-import { createHabitMutation, getHabitsQuery } from '@/views/Habits/graphql'
+import { createHabitMutation, getHabitsQuery } from '@/views/graphql'
 
 export const CreateHabitForm = ({ onClose }: { onClose: () => void }) => {
   const [title, setTitle] = useState<string>('')

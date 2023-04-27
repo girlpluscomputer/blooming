@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-const removeHabitMutation = gql`
+export const REMOVE_HABIT = gql`
   mutation RemoveHabit($habitId: String!) {
     removeHabit(habitId: $habitId) {
       id
@@ -8,4 +8,3 @@ const removeHabitMutation = gql`
     }
   }
 `
-export default removeHabitMutation

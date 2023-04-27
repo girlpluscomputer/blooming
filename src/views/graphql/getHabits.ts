@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-const getHabitsQuery = gql`
+export const GET_HABITS = gql`
   query GetHabits {
     habits {
       id
@@ -19,4 +19,3 @@ const getHabitsQuery = gql`
     }
   }
 `
-export default getHabitsQuery

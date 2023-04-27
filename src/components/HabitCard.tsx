@@ -4,11 +4,7 @@ import { useMutation } from '@apollo/client'
 
 import { HabitWeekLogs } from './HabitWeekLogs'
 import { HabitType } from '@/views/Habits/types'
-import {
-  toggleHabitMutation,
-  removeHabitMutation,
-  getHabitsQuery
-} from '@/views/Habits/graphql'
+import { TOGGLE_HABIT, REMOVE_HABIT, GET_HABITS } from '@/views/graphql'
 import Trash from '../../public/trash.svg'
 export interface HabitCardProps {
   habit: HabitType
@@ -17,11 +13,11 @@ export interface HabitCardProps {
 export const HabitCard = ({ habit }: HabitCardProps) => {
   const { id, currentDay, totalOfDays, title, description, completed, logs } =
     habit
-  const [toggleHabit] = useMutation(toggleHabitMutation, {
-    refetchQueries: [{ query: getHabitsQuery }]
+  const [toggleHabit] = useMutation(TOGGLE_HABIT, {
+    refetchQueries: [{ query: GET_HABITS }]
   })
-  const [removeHabit] = useMutation(removeHabitMutation, {
-    refetchQueries: [{ query: getHabitsQuery }]
+  const [removeHabit] = useMutation(REMOVE_HABIT, {
+    refetchQueries: [{ query: GET_HABITS }]
   })
 
   const handleClick = async () => {
