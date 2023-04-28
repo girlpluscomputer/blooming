@@ -5,9 +5,10 @@ const config: CodegenConfig = {
   schema: 'http://localhost:3000/api',
   documents: 'src/**/*.ts',
   generates: {
-    './graphql/generated/types.ts/': {
-      plugins: ['typescript'],
-      preset: 'client'
+    './graphql/generated/': {
+      plugins: ['typescript', 'typescript-resolvers'],
+      preset: 'client',
+      config: { withHooks: false }
     }
   }
 }
