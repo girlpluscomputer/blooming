@@ -1,0 +1,6 @@
+mutation RemoveHabit($habitId: String!) {
+  removeHabit(habitId: $habitId) {
+    id
+    title
+  }
+}

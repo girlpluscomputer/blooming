@@ -3,12 +3,12 @@ import { getInitialLogs } from '@/utils/getInitialLogs'
 export const habitResolver = {
   Habit: {
     user: async ({ id }, _, context) => {
-      const prismaHabit = await context.prisma.habit.findUnique({
+      const habit = await context.prisma.habit.findUnique({
         where: { id: id }
       })
 
       return context.prisma.user.findUnique({
-        where: { id: prismaHabit.userId }
+        where: { id: habit.userId }
       })
     },
     logs: ({ id }, _, context) =>

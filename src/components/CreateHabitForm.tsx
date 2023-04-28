@@ -2,16 +2,14 @@ import { FormEvent, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { Box, Button, Input, Select, Text } from '@chakra-ui/react'
 
-import { CREATE_HABIT, GET_HABITS } from '@/views/graphql'
-
 export const CreateHabitForm = ({ onClose }: { onClose: () => void }) => {
   const [title, setTitle] = useState<string>('')
   const [description, setDescription] = useState<string>('')
   const [category, setCategory] = useState<string>('')
   const [totalOfDays, setTotalOfDays] = useState<number>(21)
-  const [createHabit] = useMutation(CREATE_HABIT, {
-    refetchQueries: [{ query: GET_HABITS }]
-  })
+  // const [createHabit] = useMutation(CREATE_HABIT, {
+  //   refetchQueries: [{ query: GET_HABITS }]
+  // })
   const isSubmitButtonDisabled =
     !Boolean(title) ||
     !Boolean(description) ||
@@ -32,9 +30,9 @@ export const CreateHabitForm = ({ onClose }: { onClose: () => void }) => {
       completed: false
     }
 
-    createHabit({
-      variables: newHabit
-    })
+    // createHabit({
+    //   variables: newHabit
+    // })
     onClose()
   }
 

@@ -1,20 +1,17 @@
-import { useQuery } from '@apollo/client'
 import { Box, Button, Heading, useDisclosure } from '@chakra-ui/react'
 
 import { CreateHabitModal, HabitCard, Header } from '@/components'
 import { getTodayDateFormatted } from '@/utils/getTodayDateFormatted'
-import { HabitType } from './types'
-import { GET_HABITS } from '../graphql'
 import AddIcon from '../../../public/add.svg'
 
 const Habits = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { data, loading } = useQuery(GET_HABITS)
-  const habits: HabitType[] = data ? data.habits : []
+  // const { data, loading } = useQuery(GET_HABITS)
+  // const habits: HabitType[] = data ? data.habits : []
 
-  if (loading) {
-    return <span>Loading...</span>
-  }
+  // if (loading) {
+  //   return <span>Loading...</span>
+  // }
 
   return (
     <>
@@ -47,7 +44,7 @@ const Habits = () => {
             <AddIcon />
           </Button>
         </Box>
-        {habits.length > 0 ? (
+        {/* {habits.length > 0 ? (
           <Box
             pt="20px"
             display="grid"
@@ -60,7 +57,7 @@ const Habits = () => {
           </Box>
         ) : (
           <span>Start by creating a habit</span>
-        )}
+        )} */}
       </Box>
       <CreateHabitModal isOpen={isOpen} onClose={onClose} />
     </>
