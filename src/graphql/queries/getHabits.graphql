@@ -7,11 +7,17 @@ query GetHabits {
     completed
     currentDay
     totalOfDays
+    createdAt
     logs {
       id
       createdAt
       expiresAt
       completed
+      status
+    }
+    user {
+      id
+      email
     }
   }
 }

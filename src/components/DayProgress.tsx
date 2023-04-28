@@ -1,13 +1,10 @@
 import { Box, Text } from '@chakra-ui/react'
 
-import { LogStatus } from '@/views/Habits/types'
-import { ReactNode } from 'react'
-// completed = filled black, white text
-// initial/not completed = filled white, black border
-// disabled = filled in gray, gray text
+import { LogStatus } from '@/graphql/generated/types'
+
 export interface DayProgressProps {
   status: LogStatus
-  children: ReactNode
+  children: React.ReactNode
 }
 
 export const DayProgress = ({ status, children }: DayProgressProps) => {
@@ -15,15 +12,15 @@ export const DayProgress = ({ status, children }: DayProgressProps) => {
     let bg = ''
 
     switch (status) {
-      case LogStatus.INITIAL: {
+      case LogStatus.Initial: {
         bg = 'var(--chakra-colors-white)'
         break
       }
-      case LogStatus.COMPLETED: {
+      case LogStatus.Completed: {
         bg = 'var(--chakra-colors-black)'
         break
       }
-      case LogStatus.DISABLED: {
+      case LogStatus.Expired: {
         bg = 'var(--chakra-colors-lightGray)'
         break
       }
@@ -33,7 +30,7 @@ export const DayProgress = ({ status, children }: DayProgressProps) => {
   }
 
   const getBorder = () => {
-    return status !== LogStatus.DISABLED
+    return status !== LogStatus.Expired
       ? '1px solid var(--chakra-colors-black)'
       : '1px solid var(--chakra-colors-lightGray)'
   }
@@ -42,15 +39,15 @@ export const DayProgress = ({ status, children }: DayProgressProps) => {
     let color
 
     switch (status) {
-      case LogStatus.INITIAL: {
+      case LogStatus.Initial: {
         color = 'var(--chakra-colors-black)'
         break
       }
-      case LogStatus.COMPLETED: {
+      case LogStatus.Completed: {
         color = 'var(--chakra-colors-white)'
         break
       }
-      case LogStatus.DISABLED: {
+      case LogStatus.Expired: {
         color = 'var(--chakra-colors-gray)'
         break
       }

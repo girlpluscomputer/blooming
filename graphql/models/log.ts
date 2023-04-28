@@ -13,7 +13,7 @@ export const typeDefs = gql`
     expiresAt: String!
     completed: Boolean!
     status: String!
-    habit: Habit!
+    habit: Habit
   }
 
   type Query {

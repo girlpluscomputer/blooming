@@ -26,9 +26,9 @@ export type ToggleHabitMutationVariables = Types.Exact<{
 }>;
 
 
-export type ToggleHabitMutation = { __typename?: 'Mutation', toggleHabit: { __typename?: 'Habit', id: string, title: string, completed: boolean, logs: Array<{ __typename?: 'Log', id: string, completed: boolean } | null> } };
+export type ToggleHabitMutation = { __typename?: 'Mutation', toggleHabit: { __typename?: 'Habit', id: string, title: string, completed: boolean, logs: Array<{ __typename?: 'Log', id: string, completed: boolean }> } };
 
 export type GetHabitsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetHabitsQuery = { __typename?: 'Query', habits: Array<{ __typename?: 'Habit', id: string, title: string, description?: string | null, category: string, completed: boolean, currentDay: number, totalOfDays: number, logs: Array<{ __typename?: 'Log', id: string, createdAt: string, expiresAt: string, completed: boolean } | null> } | null> };
+export type GetHabitsQuery = { __typename?: 'Query', habits: Array<{ __typename?: 'Habit', id: string, title: string, description?: string | null, category: string, completed: boolean, currentDay: number, totalOfDays: number, createdAt: string, logs: Array<{ __typename?: 'Log', id: string, createdAt: string, expiresAt: string, completed: boolean, status: string }>, user: { __typename?: 'User', id: string, email: string } }> };

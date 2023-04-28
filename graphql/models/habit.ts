@@ -10,12 +10,12 @@ export const typeDefs = gql`
     category: String!
     completed: Boolean!
     createdAt: String!
+    logs: [Log!]!
     user: User!
-    logs: [Log]!
   }
 
   type Query {
-    habits: [Habit]!
+    habits: [Habit!]!
   }
 
   type Mutation {

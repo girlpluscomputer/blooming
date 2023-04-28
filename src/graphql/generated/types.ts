@@ -20,7 +20,7 @@ export type Habit = {
   currentDay: Scalars['Int'];
   description?: Maybe<Scalars['String']>;
   id: Scalars['String'];
-  logs: Array<Maybe<Log>>;
+  logs: Array<Log>;
   title: Scalars['String'];
   totalOfDays: Scalars['Int'];
   user: User;
@@ -31,7 +31,7 @@ export type Log = {
   completed: Scalars['Boolean'];
   createdAt: Scalars['String'];
   expiresAt: Scalars['String'];
-  habit: Habit;
+  habit?: Maybe<Habit>;
   id: Scalars['String'];
   status: Scalars['String'];
 };
@@ -81,7 +81,7 @@ export type MutationToggleHabitArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  habits: Array<Maybe<Habit>>;
+  habits: Array<Habit>;
   log: Log;
   logs: Array<Maybe<Log>>;
   users: Array<Maybe<User>>;
